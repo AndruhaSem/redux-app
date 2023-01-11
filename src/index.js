@@ -31,8 +31,10 @@ const App = () => {
   const deleteTask = (taskId) => {
     dispatch(taskDeleted(taskId));
   };
-  const buttun = (taskId) => {
-    dispatch(createTasks(taskId));
+  const addNewTask = () => {
+    dispatch(
+      createTasks({ userId: 1, title: "SomeNew Task 1387", completed: false })
+    );
   };
   if (isLoading) {
     return <h1>Loading...</h1>;
@@ -43,6 +45,7 @@ const App = () => {
   return (
     <>
       <h1>App</h1>
+      <button onClick={addNewTask}>Add task</button>
       <ul>
         {state.map((el) => (
           <li key={el.id}>
@@ -54,7 +57,6 @@ const App = () => {
             </button>
             <button onClick={() => changeTitle(el.id)}>Change title</button>
             <button onClick={() => deleteTask(el.id)}>Delete</button>
-            <button onClick={() => buttun(el)}>button-post</button>
             <hr />
           </li>
         ))}
